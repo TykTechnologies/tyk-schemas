@@ -1,7 +1,10 @@
-# tyk-chemas
+# tyk-schemas
 
-**JSON and YAML schemas for various json file types used by Tyk products. 
-You can use these schemas in your IDE or favourite editor to get autocompletion and validation of all your Tyk related configuration files.**
+Repository for all schemas compatible with Tyk objects and files.
+
+
+JSON, YAML and maybe more schemas for various file types and objects used by Tyk products. 
+You can use these schemas in your IDE or favourite editor to get autocompletion or code validation of all your Tyk related work.
 
 
 **This project is an MVP and still WIP**
@@ -22,6 +25,7 @@ You can use these schemas in your IDE or favourite editor to get autocompletion 
 | ----------- | --------- | ---- | --------- |
 | Tyk API definition | ⚠️ | ❌️ | - |
 | Tyk API OAS definition | ❌️ | ❌️ | - |
+| Tyk API definition in Tyk operator | ❌️ | ❌ | - |
 | Tyk key definition | ⚠️ | ❌️ | Also referred as "session object" |
 | Tyk policy definition | ❌️ | ❌️ | - |
 | Tyk OSS gateway config file | ⚠️ | NA | - |
