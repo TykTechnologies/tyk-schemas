@@ -37,7 +37,7 @@ Use Tyk VSCode extension to enable VSCode to enforce Tyk JSON schema on various 
 **VSCode installation**
 Install [Tyk extension](https://marketplace.visualstudio.com/items?itemName=TykTechnologiesLimited.tyk-schemas).
 
-For Tyk extension to validate the JSON schemas, make sure to create files with the follwoing name convenstions
+For Tyk extension to validate the JSON schemas, make sure to create files with the following name conventions:
    - Tyk API definition - use the format `"apidef.*.json"` or  `"TykDefinition-*.json"`. 
      - Example: `"apidef.httpbin.json"`
    - Tyk OAS API definition - use the format `"oasapidef.*.json"` or`"TykOasApiDef-*.json"`
