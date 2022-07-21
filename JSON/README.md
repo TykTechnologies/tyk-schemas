@@ -53,7 +53,7 @@ For Tyk extension to validate the JSON schemas, make sure to create files with t
 
 Follow [this guide](https://www.jetbrains.com/help/go/json.html#8ae73b55) to enforce the Tyk JSON schema validation.
 In the **Schema file or URL** field, specify the **Raw version** URL of one of the Tyk schemas that you want. 
-For example, for "Tyk OAS APi definition" add the URL https://raw.githubusercontent.com/TykTechnologies/tyk-schemas/main/JSON/draft-04/schema_apidefoas.json
+For example, for "Tyk OAS API Definition" add the URL https://raw.githubusercontent.com/TykTechnologies/tyk-schemas/main/JSON/draft-04/schema_apidefoas.json
 
 Example for setting JSON schema for "Tyk OAS API Definition":
 <img width="1178" alt="image" src="https://user-images.githubusercontent.com/3155222/180099534-ef58b1f2-dc18-4113-b47d-ed789f63da0a.png">
