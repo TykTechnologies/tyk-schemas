@@ -32,7 +32,7 @@ To write in "Tyk language" and feel it's native to your IDE configure the settin
 
 ## VSCode
 
-Use Tyk vscode extention to enable VSCode to enforce Tyk JSON schema on verious JSON files:
+Use Tyk VSCode extension to enable VSCode to enforce Tyk JSON schema on various JSON files:
 
 **VSCode installation**
 Install [Tyk extension](https://marketplace.visualstudio.com/items?itemName=TykTechnologiesLimited.tyk-schemas).
