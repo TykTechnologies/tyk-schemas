@@ -187,7 +187,7 @@
                     "$id": "#/properties/version_data/properties/not_versioned",
                     "type": "boolean",
                     "title": "The not_versioned schema",
-                    "description": "Define if the api has versioning turned on. False by default, i.e. not versioned.",
+                    "description": "Define if the api has versioning turned on. False by default, i.e. the API is versioned.",
                     "default": false,
                     "examples": [
                         true
