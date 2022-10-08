@@ -139,16 +139,17 @@
             "$id": "#/properties/version_data",
             "type": "object",
             "title": "The version_data schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": {
-                "versions": {
-                    "Default": {
-                        "name": "Default"
-                    }
-                },
-                "not_versioned": true
-            },
+            "description": "Version data for the API.",
+            "default": {},
             "examples": [
+                 {
+                    "versions": {
+                        "Default": {
+                            "name": "Default"
+                        }
+                    },
+                    "not_versioned": false
+                },
                 {
                     "versions": {
                         "v1": {
@@ -167,7 +168,7 @@
                     "$id": "#/properties/version_data/properties/versions",
                     "type": "object",
                     "title": "The versions schema",
-                    "description": "An explanation about the purpose of this instance.",
+                    "description": "Versions list.",
                     "default": {},
                     "examples": [
                         {
@@ -177,37 +178,8 @@
                         }
                     ],
                     "required": [
-                        "Default"
                     ],
                     "properties": {
-                        "Default": {
-                            "$id": "#/properties/version_data/properties/versions/properties/Default",
-                            "type": "object",
-                            "title": "The Default schema",
-                            "description": "An explanation about the purpose of this instance.",
-                            "default": {},
-                            "examples": [
-                                {
-                                    "name": "Default"
-                                }
-                            ],
-                            "required": [
-                                "name"
-                            ],
-                            "properties": {
-                                "name": {
-                                    "$id": "#/properties/version_data/properties/versions/properties/Default/properties/name",
-                                    "type": "string",
-                                    "title": "The name schema",
-                                    "description": "An explanation about the purpose of this instance.",
-                                    "default": "",
-                                    "examples": [
-                                        "Default"
-                                    ]
-                                }
-                            },
-                            "additionalProperties": true
-                        }
                     },
                     "additionalProperties": true
                 },
@@ -215,7 +187,7 @@
                     "$id": "#/properties/version_data/properties/not_versioned",
                     "type": "boolean",
                     "title": "The not_versioned schema",
-                    "description": "An explanation about the purpose of this instance.",
+                    "description": "Define if the api has versioning turned on. False by default, i.e. the API is versioned.",
                     "default": false,
                     "examples": [
                         true
@@ -223,7 +195,9 @@
                 },
                 "default_version": {
                     "type": "string",
-                    "id": "#/properties/version_data/properties/default_version"
+                    "id": "#/properties/version_data/properties/default_version",
+                    "title": "The default_version schema",
+                    "description": "Define the default version of the API. Used in case versioning is turned on and no version data has been provied in the request.",
                 }
             },
             "additionalProperties": true
