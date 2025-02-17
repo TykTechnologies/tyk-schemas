@@ -68,8 +68,8 @@ jobs:
             fi
             # Create a directory in the target repo (e.g. v5.8) and copy the generated schema
             mkdir -p "$folder"
-            cp tyk-source/schema_apidef_full.json v$branch/schema_apidef_full.json
-            cp tyk-source/schema_oss_config_full.json v$branch/schema_oss_config_full.json
+            cp tyk-source/schema_apidef_full.json "$folder/schema_apidef_full.json"
+            cp tyk-source/schema_oss_config_full.json "$folder/schema_oss_config_full.json"
           done
 
       - name: Create Pull Request for Generated Schema
