@@ -7,13 +7,13 @@ on:
       branches:
         description: 'Comma-separated list of long-term support branches (e.g. 5.8,5.6)'
         required: true
-        default: '5.8,5.6'
+        default: 'master,5.3,5.4,5.7'
 
 jobs:
   generate-schema:
     runs-on: ubuntu-latest
     env:
-      BRANCHES: "5.7,5.6"
+      BRANCHES: ${{ github.event.inputs.branches || 'master,5.3,5.4,5.7' }}
     steps:
       - name: Checkout target repository (tyk-schema)
         uses: actions/checkout@v4
@@ -52,15 +52,22 @@ jobs:
             echo "Processing branch $branch"
             cd tyk-source
             git fetch --all
-            # Prepend "release-" to get the correct branch name (e.g. "5.7" becomes "release-5.7")
-            git checkout release-$branch
+            if [ "$branch" = "master" ]; then
+              git checkout master
+            else
+              git checkout release-$branch
+            fi
             # Run the schema generator (adjust -i, -t, and -o as needed)
-            ls -a
             schema-gen jsonschema -i=./apidef -t=APIDefinition -o=schema_apidef_full.json
             schema-gen jsonschema -i=./config -t=Config -o=schema_oss_config_full.json
             cd ..
+            if [ "$branch" = "master" ]; then
+              folder="master"
+            else
+              folder="v$branch"
+            fi
             # Create a directory in the target repo (e.g. v5.8) and copy the generated schema
-            mkdir -p v$branch
+            mkdir -p "$folder"
             cp tyk-source/schema_apidef_full.json v$branch/schema_apidef_full.json
             cp tyk-source/schema_oss_config_full.json v$branch/schema_oss_config_full.json
           done
