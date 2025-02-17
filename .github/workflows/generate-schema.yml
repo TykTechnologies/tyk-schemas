@@ -55,7 +55,7 @@ jobs:
             git checkout release-$branch
             # Run the schema generator (adjust -i, -t, and -o as needed)
             ls -a
-            schema-gen -i=./apidef -t=apidef.APIDefinition -o=schema_apidef_full.json
+            schema-gen jsonschema -i=./apidef -t=APIDefinition -o=schema_apidef_full.json
             cd ..
             # Create a directory in the target repo (e.g. v5.8) and copy the generated schema
             mkdir -p v$branch
