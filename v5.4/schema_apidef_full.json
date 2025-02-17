@@ -1,0 +1,2256 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/APIDefinition",
+    "definitions": {
+        "APIDefinition": {
+            "type": "object",
+            "properties": {
+                "CORS": {
+                    "$ref": "#/definitions/CORSConfig"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "allowed_ips": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "analytics_plugin": {
+                    "$ref": "#/definitions/AnalyticsPluginConfig"
+                },
+                "api_id": {
+                    "type": "string"
+                },
+                "auth": {
+                    "$ref": "#/definitions/AuthConfig"
+                },
+                "auth_configs": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/AuthConfig"
+                    }
+                },
+                "auth_provider": {
+                    "$ref": "#/definitions/AuthProviderMeta"
+                },
+                "base_identity_provided_by": {
+                    "$ref": "#/definitions/AuthTypeEnum"
+                },
+                "basic_auth": {
+                    "$ref": "#/definitions/struct{}"
+                },
+                "blacklisted_ips": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cache_options": {
+                    "$ref": "#/definitions/CacheOptions"
+                },
+                "certificate_pinning_disabled": {
+                    "type": "boolean",
+                    "description": "CertificatePinningDisabled disables public key pinning"
+                },
+                "certificates": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "client_certificates": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "config_data": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "config_data_disabled": {
+                    "type": "boolean"
+                },
+                "custom_middleware": {
+                    "$ref": "#/definitions/MiddlewareSection"
+                },
+                "custom_middleware_bundle": {
+                    "type": "string"
+                },
+                "custom_middleware_bundle_disabled": {
+                    "type": "boolean"
+                },
+                "custom_plugin_auth_enabled": {
+                    "type": "boolean"
+                },
+                "definition": {
+                    "$ref": "#/definitions/VersionDefinition"
+                },
+                "detailed_tracing": {
+                    "type": "boolean"
+                },
+                "disable_quota": {
+                    "type": "boolean"
+                },
+                "disable_rate_limit": {
+                    "type": "boolean"
+                },
+                "do_not_track": {
+                    "type": "boolean"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "domain_disabled": {
+                    "type": "boolean"
+                },
+                "dont_set_quota_on_create": {
+                    "type": "boolean"
+                },
+                "enable_batch_request_support": {
+                    "type": "boolean"
+                },
+                "enable_context_vars": {
+                    "type": "boolean"
+                },
+                "enable_coprocess_auth": {
+                    "type": "boolean"
+                },
+                "enable_detailed_recording": {
+                    "type": "boolean"
+                },
+                "enable_ip_blacklisting": {
+                    "type": "boolean"
+                },
+                "enable_ip_whitelisting": {
+                    "type": "boolean"
+                },
+                "enable_jwt": {
+                    "type": "boolean"
+                },
+                "enable_proxy_protocol": {
+                    "type": "boolean"
+                },
+                "enable_signature_checking": {
+                    "type": "boolean"
+                },
+                "event_handlers": {
+                    "$ref": "#/definitions/EventHandlerMetaConfig"
+                },
+                "expiration": {
+                    "type": "string"
+                },
+                "expire_analytics_after": {
+                    "type": "integer"
+                },
+                "external_oauth": {
+                    "$ref": "#/definitions/ExternalOAuth"
+                },
+                "global_rate_limit": {
+                    "$ref": "#/definitions/GlobalRateLimit"
+                },
+                "graphql": {
+                    "$ref": "#/definitions/GraphQLConfig"
+                },
+                "hmac_allowed_algorithms": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "hmac_allowed_clock_skew": {
+                    "type": "number"
+                },
+                "id": {
+                    "$ref": "#/definitions/ModelObjectID"
+                },
+                "idp_client_id_mapping_disabled": {
+                    "type": "boolean"
+                },
+                "internal": {
+                    "type": "boolean"
+                },
+                "is_oas": {
+                    "type": "boolean",
+                    "description": "IsOAS is set to true when API has an OAS definition (created in OAS or migrated to OAS)"
+                },
+                "jwt_client_base_field": {
+                    "type": "string"
+                },
+                "jwt_default_policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "jwt_expires_at_validation_skew": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "jwt_identity_base_field": {
+                    "type": "string"
+                },
+                "jwt_issued_at_validation_skew": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "jwt_not_before_validation_skew": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "jwt_policy_field_name": {
+                    "type": "string"
+                },
+                "jwt_scope_claim_name": {
+                    "type": "string"
+                },
+                "jwt_scope_to_policy_mapping": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "jwt_signing_method": {
+                    "type": "string"
+                },
+                "jwt_skip_kid": {
+                    "type": "boolean"
+                },
+                "jwt_source": {
+                    "type": "string"
+                },
+                "listen_port": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notifications": {
+                    "$ref": "#/definitions/NotificationsManager"
+                },
+                "oauth_meta": {
+                    "$ref": "#/definitions/struct{}"
+                },
+                "openid_options": {
+                    "$ref": "#/definitions/OpenIDOptions"
+                },
+                "org_id": {
+                    "type": "string"
+                },
+                "pinned_public_keys": {
+                    "type": "object",
+                    "description": "PinnedPublicKeys stores the public key pinning details",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "proxy": {
+                    "$ref": "#/definitions/ProxyConfig"
+                },
+                "request_signing": {
+                    "$ref": "#/definitions/RequestSigningMeta"
+                },
+                "response_processors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseProcessor"
+                    }
+                },
+                "scopes": {
+                    "$ref": "#/definitions/Scopes"
+                },
+                "session_lifetime": {
+                    "type": "integer"
+                },
+                "session_lifetime_respects_key_expiration": {
+                    "type": "boolean"
+                },
+                "session_provider": {
+                    "$ref": "#/definitions/SessionProviderMeta"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "strip_auth_data": {
+                    "type": "boolean"
+                },
+                "tag_headers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "tags_disabled": {
+                    "type": "boolean",
+                    "description": "Gateway segment tags"
+                },
+                "upstream_certificates": {
+                    "type": "object",
+                    "description": "UpstreamCertificates stores the domain to certificate mapping for upstream mutualTLS",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "upstream_certificates_disabled": {
+                    "type": "boolean",
+                    "description": "UpstreamCertificatesDisabled disables upstream mutualTLS on the API"
+                },
+                "uptime_tests": {
+                    "$ref": "#/definitions/UptimeTests"
+                },
+                "use_basic_auth": {
+                    "type": "boolean"
+                },
+                "use_go_plugin_auth": {
+                    "type": "boolean"
+                },
+                "use_keyless": {
+                    "type": "boolean"
+                },
+                "use_mutual_tls_auth": {
+                    "type": "boolean"
+                },
+                "use_oauth2": {
+                    "type": "boolean"
+                },
+                "use_openid": {
+                    "type": "boolean"
+                },
+                "use_standard_auth": {
+                    "type": "boolean"
+                },
+                "version_data": {
+                    "$ref": "#/definitions/VersionData"
+                }
+            },
+            "additionalProperties": false
+        },
+        "AnalyticsPluginConfig": {
+            "type": "object",
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "func_name": {
+                    "type": "string"
+                },
+                "plugin_path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "AuthConfig": {
+            "type": "object",
+            "properties": {
+                "auth_header_name": {
+                    "type": "string"
+                },
+                "cookie_name": {
+                    "type": "string"
+                },
+                "disable_header": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "param_name": {
+                    "type": "string"
+                },
+                "signature": {
+                    "$ref": "#/definitions/SignatureConfig"
+                },
+                "use_certificate": {
+                    "type": "boolean"
+                },
+                "use_cookie": {
+                    "type": "boolean"
+                },
+                "use_param": {
+                    "type": "boolean"
+                },
+                "validate_signature": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "AuthProviderCode": {
+            "type": "string"
+        },
+        "AuthProviderMeta": {
+            "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "name": {
+                    "$ref": "#/definitions/AuthProviderCode"
+                },
+                "storage_engine": {
+                    "$ref": "#/definitions/StorageEngineCode"
+                }
+            },
+            "additionalProperties": false
+        },
+        "AuthTypeEnum": {
+            "type": "string",
+            "enum": [
+                "",
+                "auth_token",
+                "custom_auth",
+                "hmac_key",
+                "basic_auth_user",
+                "jwt_claim",
+                "oidc_user",
+                "oauth_key",
+                ""
+            ]
+        },
+        "CORSConfig": {
+            "type": "object",
+            "properties": {
+                "allow_credentials": {
+                    "type": "boolean"
+                },
+                "allowed_headers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "allowed_methods": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "allowed_origins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "debug": {
+                    "type": "boolean"
+                },
+                "enable": {
+                    "type": "boolean"
+                },
+                "exposed_headers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "max_age": {
+                    "type": "integer"
+                },
+                "options_passthrough": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "CacheMeta": {
+            "type": "object",
+            "properties": {
+                "cache_key_regex": {
+                    "type": "string"
+                },
+                "cache_response_codes": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "timeout": {
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false
+        },
+        "CacheOptions": {
+            "type": "object",
+            "properties": {
+                "cache_all_safe_requests": {
+                    "type": "boolean"
+                },
+                "cache_by_headers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cache_control_ttl_header": {
+                    "type": "string"
+                },
+                "cache_response_codes": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "cache_timeout": {
+                    "type": "integer"
+                },
+                "enable_cache": {
+                    "type": "boolean"
+                },
+                "enable_upstream_cache_control": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "CheckCommand": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "CircuitBreakerMeta": {
+            "type": "object",
+            "properties": {
+                "disable_half_open_state": {
+                    "type": "boolean"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "return_to_service_after": {
+                    "type": "integer"
+                },
+                "samples": {
+                    "type": "integer"
+                },
+                "threshold_percent": {
+                    "type": "number"
+                }
+            },
+            "additionalProperties": false
+        },
+        "DatasourceMappingConfiguration": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "DatasourceSourceConfig": {
+            "type": "object",
+            "properties": {
+                "data_source_config": {
+                    "$ref": "#/definitions/JsonRawMessage",
+                    "description": "Config is the DataSource specific configuration object\nEach Planner needs to make sure to parse their Config Object correctly"
+                },
+                "kind": {
+                    "type": "string",
+                    "description": "Kind defines the unique identifier of the DataSource\nKind needs to match to the Planner \"DataSourceName\" name"
+                }
+            },
+            "additionalProperties": false
+        },
+        "DatasourceTypeFieldConfiguration": {
+            "type": "object",
+            "properties": {
+                "data_source": {
+                    "$ref": "#/definitions/DatasourceSourceConfig"
+                },
+                "field_name": {
+                    "type": "string"
+                },
+                "mapping": {
+                    "$ref": "#/definitions/DatasourceMappingConfiguration"
+                },
+                "type_name": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "EndPointMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "method_actions": {
+                    "type": "object",
+                    "description": "Deprecated. Use Method instead.",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/EndpointMethodMeta"
+                    }
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "EndpointMethodAction": {
+            "type": "string",
+            "enum": [
+                "no_action",
+                "reply"
+            ]
+        },
+        "EndpointMethodMeta": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/definitions/EndpointMethodAction"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "EventHandlerMetaConfig": {
+            "type": "object",
+            "properties": {
+                "events": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": false
+        },
+        "ExtendedPathsSet": {
+            "type": "object",
+            "properties": {
+                "advance_cache_config": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CacheMeta"
+                    }
+                },
+                "black_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EndPointMeta"
+                    }
+                },
+                "cache": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "circuit_breakers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CircuitBreakerMeta"
+                    }
+                },
+                "do_not_track_endpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TrackEndpointMeta"
+                    }
+                },
+                "go_plugin": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/GoPluginMeta"
+                    }
+                },
+                "hard_timeouts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HardTimeoutMeta"
+                    }
+                },
+                "ignored": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EndPointMeta"
+                    }
+                },
+                "internal": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InternalMeta"
+                    }
+                },
+                "method_transforms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MethodTransformMeta"
+                    }
+                },
+                "mock_response": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MockResponseMeta"
+                    }
+                },
+                "persist_graphql": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PersistGraphQLMeta"
+                    }
+                },
+                "size_limits": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RequestSizeMeta"
+                    }
+                },
+                "track_endpoints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TrackEndpointMeta"
+                    }
+                },
+                "transform": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TemplateMeta"
+                    }
+                },
+                "transform_headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HeaderInjectionMeta"
+                    }
+                },
+                "transform_jq": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransformJQMeta"
+                    }
+                },
+                "transform_jq_response": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransformJQMeta"
+                    }
+                },
+                "transform_response": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TemplateMeta"
+                    }
+                },
+                "transform_response_headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HeaderInjectionMeta"
+                    }
+                },
+                "url_rewrites": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/URLRewriteMeta"
+                    }
+                },
+                "validate_json": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ValidatePathMeta"
+                    }
+                },
+                "validate_request": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ValidateRequestMeta"
+                    }
+                },
+                "virtual": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/VirtualMeta"
+                    }
+                },
+                "white_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/EndPointMeta"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "ExternalOAuth": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "providers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Provider"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "GlobalRateLimit": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "per": {
+                    "type": "number"
+                },
+                "rate": {
+                    "type": "number"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GoPluginMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "func_name": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "plugin_path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLConfig": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enabled indicates if GraphQL should be enabled."
+                },
+                "engine": {
+                    "$ref": "#/definitions/GraphQLEngineConfig",
+                    "description": "Engine holds the configuration for engine v2 and upwards."
+                },
+                "execution_mode": {
+                    "$ref": "#/definitions/GraphQLExecutionMode",
+                    "description": "ExecutionMode is the mode to define how an api behaves."
+                },
+                "introspection": {
+                    "$ref": "#/definitions/GraphQLIntrospectionConfig",
+                    "description": "Introspection holds the configuration for GraphQL Introspection"
+                },
+                "last_schema_update": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "LastSchemaUpdate contains the date and time of the last triggered schema update to the upstream."
+                },
+                "playground": {
+                    "$ref": "#/definitions/GraphQLPlayground",
+                    "description": "GraphQLPlayground is the Playground specific configuration."
+                },
+                "proxy": {
+                    "$ref": "#/definitions/GraphQLProxyConfig",
+                    "description": "Proxy holds the configuration for a proxy only api."
+                },
+                "schema": {
+                    "type": "string",
+                    "description": "Schema is the GraphQL Schema exposed by the GraphQL API/Upstream/Engine."
+                },
+                "subgraph": {
+                    "$ref": "#/definitions/GraphQLSubgraphConfig",
+                    "description": "Subgraph holds the configuration for a GraphQL federation subgraph."
+                },
+                "supergraph": {
+                    "$ref": "#/definitions/GraphQLSupergraphConfig",
+                    "description": "Supergraph holds the configuration for a GraphQL federation supergraph."
+                },
+                "type_field_configurations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DatasourceTypeFieldConfiguration"
+                    },
+                    "description": "TypeFieldConfigurations is a rule set of data source and mapping of a schema field."
+                },
+                "version": {
+                    "$ref": "#/definitions/GraphQLConfigVersion",
+                    "description": "Version defines the version of the GraphQL config and engine to be used."
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLConfigVersion": {
+            "type": "string",
+            "enum": [
+                "",
+                "1",
+                "2",
+                "3-preview"
+            ]
+        },
+        "GraphQLEngineConfig": {
+            "type": "object",
+            "properties": {
+                "data_sources": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/GraphQLEngineDataSource"
+                    }
+                },
+                "field_configs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/GraphQLFieldConfig"
+                    }
+                },
+                "global_headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/UDGGlobalHeader"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLEngineDataSource": {
+            "type": "object",
+            "properties": {
+                "config": {
+                    "$ref": "#/definitions/JsonRawMessage"
+                },
+                "internal": {
+                    "type": "boolean"
+                },
+                "kind": {
+                    "$ref": "#/definitions/GraphQLEngineDataSourceKind"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "root_fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/GraphQLTypeFields"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLEngineDataSourceKind": {
+            "type": "string"
+        },
+        "GraphQLExecutionMode": {
+            "type": "string",
+            "enum": [
+                "proxyOnly",
+                "executionEngine",
+                "subgraph",
+                "supergraph"
+            ]
+        },
+        "GraphQLFieldConfig": {
+            "type": "object",
+            "properties": {
+                "disable_default_mapping": {
+                    "type": "boolean"
+                },
+                "field_name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type_name": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLIntrospectionConfig": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLPlayground": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enabled indicates if the playground should be enabled."
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Path sets the path on which the playground will be hosted if enabled."
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLProxyConfig": {
+            "type": "object",
+            "properties": {
+                "auth_headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "features": {
+                    "$ref": "#/definitions/GraphQLProxyFeaturesConfig"
+                },
+                "request_headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "request_headers_rewrite": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/RequestHeadersRewriteConfig"
+                    }
+                },
+                "subscription_type": {
+                    "$ref": "#/definitions/SubscriptionType"
+                },
+                "use_response_extensions": {
+                    "$ref": "#/definitions/GraphQLResponseExtensions"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLProxyFeaturesConfig": {
+            "type": "object",
+            "properties": {
+                "use_immutable_headers": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLResponseExtensions": {
+            "type": "object",
+            "properties": {
+                "on_error_forwarding": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLSubgraphConfig": {
+            "type": "object",
+            "properties": {
+                "sdl": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLSubgraphEntity": {
+            "type": "object",
+            "properties": {
+                "api_id": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sdl": {
+                    "type": "string"
+                },
+                "subscription_type": {
+                    "$ref": "#/definitions/SubscriptionType"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLSupergraphConfig": {
+            "type": "object",
+            "properties": {
+                "disable_query_batching": {
+                    "type": "boolean"
+                },
+                "global_headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "merged_sdl": {
+                    "type": "string"
+                },
+                "subgraphs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/GraphQLSubgraphEntity"
+                    }
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "UpdatedAt contains the date and time of the last update of a supergraph API."
+                }
+            },
+            "additionalProperties": false
+        },
+        "GraphQLTypeFields": {
+            "type": "object",
+            "properties": {
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "HardTimeoutMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "timeout": {
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false
+        },
+        "HeaderInjectionMeta": {
+            "type": "object",
+            "properties": {
+                "act_on": {
+                    "type": "boolean"
+                },
+                "add_headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "delete_headers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "HostCheckObject": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "commands": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CheckCommand"
+                    }
+                },
+                "enable_proxy_protocol": {
+                    "type": "boolean"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "method": {
+                    "type": "string"
+                },
+                "protocol": {
+                    "type": "string"
+                },
+                "timeout": {
+                    "type": "string",
+                    "pattern": "^[-+]?([0-9]*(\\.[0-9]*)?[a-z]+)+$"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "IdExtractorSource": {
+            "type": "string",
+            "enum": [
+                "body",
+                "header",
+                "querystring",
+                "form"
+            ]
+        },
+        "IdExtractorType": {
+            "type": "string",
+            "enum": [
+                "value",
+                "xpath",
+                "regex"
+            ]
+        },
+        "InternalMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "Introspection": {
+            "type": "object",
+            "properties": {
+                "cache": {
+                    "$ref": "#/definitions/IntrospectionCache"
+                },
+                "client_id": {
+                    "type": "string"
+                },
+                "client_secret": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "identity_base_field": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "IntrospectionCache": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "timeout": {
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false
+        },
+        "JWTValidation": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "expires_at_validation_skew": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "identity_base_field": {
+                    "type": "string"
+                },
+                "issued_at_validation_skew": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "not_before_validation_skew": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "signing_method": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "JsonRawMessage": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "MethodTransformMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "to_method": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "MiddlewareDefinition": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "raw_body_only": {
+                    "type": "boolean"
+                },
+                "require_session": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "MiddlewareDriver": {
+            "type": "string",
+            "enum": [
+                "otto",
+                "python",
+                "lua",
+                "grpc",
+                "goplugin"
+            ]
+        },
+        "MiddlewareIdExtractor": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "extract_from": {
+                    "$ref": "#/definitions/IdExtractorSource"
+                },
+                "extract_with": {
+                    "$ref": "#/definitions/IdExtractorType"
+                },
+                "extractor_config": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": false
+        },
+        "MiddlewareSection": {
+            "type": "object",
+            "properties": {
+                "auth_check": {
+                    "$ref": "#/definitions/MiddlewareDefinition"
+                },
+                "driver": {
+                    "$ref": "#/definitions/MiddlewareDriver"
+                },
+                "id_extractor": {
+                    "$ref": "#/definitions/MiddlewareIdExtractor"
+                },
+                "post": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MiddlewareDefinition"
+                    }
+                },
+                "post_key_auth": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MiddlewareDefinition"
+                    }
+                },
+                "pre": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MiddlewareDefinition"
+                    }
+                },
+                "response": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MiddlewareDefinition"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "MockResponseMeta": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "ignore_case": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ModelObjectID": {
+            "type": "string"
+        },
+        "NotificationsManager": {
+            "type": "object",
+            "properties": {
+                "oauth_on_keychange_url": {
+                    "type": "string"
+                },
+                "shared_secret": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "OIDProviderConfig": {
+            "type": "object",
+            "properties": {
+                "client_ids": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "issuer": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "OpenIDOptions": {
+            "type": "object",
+            "properties": {
+                "providers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OIDProviderConfig"
+                    }
+                },
+                "segregate_by_client": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "PersistGraphQLMeta": {
+            "type": "object",
+            "properties": {
+                "method": {
+                    "type": "string"
+                },
+                "operation": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "variables": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": false
+        },
+        "Provider": {
+            "type": "object",
+            "properties": {
+                "introspection": {
+                    "$ref": "#/definitions/Introspection"
+                },
+                "jwt": {
+                    "$ref": "#/definitions/JWTValidation"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ProxyConfig": {
+            "type": "object",
+            "properties": {
+                "check_host_against_uptime_tests": {
+                    "type": "boolean"
+                },
+                "disable_strip_slash": {
+                    "type": "boolean"
+                },
+                "enable_load_balancing": {
+                    "type": "boolean"
+                },
+                "listen_path": {
+                    "type": "string"
+                },
+                "preserve_host_header": {
+                    "type": "boolean"
+                },
+                "service_discovery": {
+                    "$ref": "#/definitions/ServiceDiscoveryConfiguration"
+                },
+                "strip_listen_path": {
+                    "type": "boolean"
+                },
+                "target_list": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "target_url": {
+                    "type": "string"
+                },
+                "transport": {
+                    "$ref": "#/definitions/struct{}"
+                }
+            },
+            "additionalProperties": false
+        },
+        "RegexpRegexp": {
+            "type": "object",
+            "properties": {
+                "FromCache": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "RequestHeadersRewriteConfig": {
+            "type": "object",
+            "properties": {
+                "remove": {
+                    "type": "boolean"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "RequestInputType": {
+            "type": "string"
+        },
+        "RequestSigningMeta": {
+            "type": "object",
+            "properties": {
+                "algorithm": {
+                    "type": "string"
+                },
+                "certificate_id": {
+                    "type": "string"
+                },
+                "header_list": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "is_enabled": {
+                    "type": "boolean"
+                },
+                "key_id": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "signature_header": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "RequestSizeMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "size_limit": {
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ResponseProcessor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "options": {
+                    "$ref": "#/definitions/"
+                }
+            },
+            "additionalProperties": false
+        },
+        "RoutingTrigger": {
+            "type": "object",
+            "properties": {
+                "on": {
+                    "$ref": "#/definitions/RoutingTriggerOnType"
+                },
+                "options": {
+                    "$ref": "#/definitions/RoutingTriggerOptions"
+                },
+                "rewrite_to": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "RoutingTriggerOnType": {
+            "type": "string",
+            "enum": [
+                "all",
+                "any"
+            ]
+        },
+        "RoutingTriggerOptions": {
+            "type": "object",
+            "properties": {
+                "header_matches": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/StringRegexMap"
+                    }
+                },
+                "path_part_matches": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/StringRegexMap"
+                    }
+                },
+                "payload_matches": {
+                    "$ref": "#/definitions/StringRegexMap"
+                },
+                "query_val_matches": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/StringRegexMap"
+                    }
+                },
+                "request_context_matches": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/StringRegexMap"
+                    }
+                },
+                "session_meta_matches": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/StringRegexMap"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "ScopeClaim": {
+            "type": "object",
+            "properties": {
+                "scope_claim_name": {
+                    "type": "string"
+                },
+                "scope_to_policy": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "Scopes": {
+            "type": "object",
+            "properties": {
+                "jwt": {
+                    "$ref": "#/definitions/ScopeClaim"
+                },
+                "oidc": {
+                    "$ref": "#/definitions/ScopeClaim"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ServiceDiscoveryConfiguration": {
+            "type": "object",
+            "properties": {
+                "cache_disabled": {
+                    "type": "boolean"
+                },
+                "cache_timeout": {
+                    "type": "integer"
+                },
+                "data_path": {
+                    "type": "string"
+                },
+                "endpoint_returns_list": {
+                    "type": "boolean"
+                },
+                "parent_data_path": {
+                    "type": "string"
+                },
+                "port_data_path": {
+                    "type": "string"
+                },
+                "query_endpoint": {
+                    "type": "string"
+                },
+                "target_path": {
+                    "type": "string"
+                },
+                "use_discovery_service": {
+                    "type": "boolean"
+                },
+                "use_nested_query": {
+                    "type": "boolean"
+                },
+                "use_target_list": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "SessionProviderCode": {
+            "type": "string"
+        },
+        "SessionProviderMeta": {
+            "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "name": {
+                    "$ref": "#/definitions/SessionProviderCode"
+                },
+                "storage_engine": {
+                    "$ref": "#/definitions/StorageEngineCode"
+                }
+            },
+            "additionalProperties": false
+        },
+        "SignatureConfig": {
+            "type": "object",
+            "properties": {
+                "algorithm": {
+                    "type": "string"
+                },
+                "allowed_clock_skew": {
+                    "type": "integer"
+                },
+                "error_code": {
+                    "type": "integer"
+                },
+                "error_message": {
+                    "type": "string"
+                },
+                "header": {
+                    "type": "string"
+                },
+                "param_name": {
+                    "type": "string"
+                },
+                "secret": {
+                    "type": "string"
+                },
+                "use_param": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "SourceMode": {
+            "type": "string",
+            "enum": [
+                "blob",
+                "file"
+            ]
+        },
+        "StorageEngineCode": {
+            "type": "string"
+        },
+        "StringRegexMap": {
+            "type": "object",
+            "properties": {
+                "match_rx": {
+                    "type": "string"
+                },
+                "reverse": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "SubscriptionType": {
+            "type": "string",
+            "enum": [
+                "",
+                "graphql-ws",
+                "graphql-transport-ws",
+                "sse",
+                "x-tyk-internal",
+                "header",
+                "url-param",
+                "url",
+                "2006-01-02 15:04",
+                "self",
+                "x-api-version",
+                "x-tyk-base-api-id",
+                "authToken",
+                "jwt",
+                "hmac",
+                "basic",
+                "coprocess",
+                "oauth",
+                "externalOAuth",
+                "oidc"
+            ]
+        },
+        "TemplateData": {
+            "type": "object",
+            "properties": {
+                "enable_session": {
+                    "type": "boolean"
+                },
+                "input_type": {
+                    "$ref": "#/definitions/RequestInputType"
+                },
+                "template_mode": {
+                    "$ref": "#/definitions/SourceMode"
+                },
+                "template_source": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "TemplateMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "template_data": {
+                    "$ref": "#/definitions/TemplateData"
+                }
+            },
+            "additionalProperties": false
+        },
+        "TrackEndpointMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "TransformJQMeta": {
+            "type": "object",
+            "properties": {
+                "filter": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "UDGGlobalHeader": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "URLRewriteMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "match_pattern": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "rewrite_to": {
+                    "type": "string"
+                },
+                "triggers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RoutingTrigger"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "UptimeTests": {
+            "type": "object",
+            "properties": {
+                "check_list": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HostCheckObject"
+                    }
+                },
+                "config": {
+                    "$ref": "#/definitions/UptimeTestsConfig"
+                }
+            },
+            "additionalProperties": false
+        },
+        "UptimeTestsConfig": {
+            "type": "object",
+            "properties": {
+                "expire_utime_after": {
+                    "type": "integer"
+                },
+                "recheck_wait": {
+                    "type": "integer"
+                },
+                "service_discovery": {
+                    "$ref": "#/definitions/ServiceDiscoveryConfiguration"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ValidatePathMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "error_response_code": {
+                    "type": "integer",
+                    "description": "Allows override of default 422 Unprocessible Entity response code for validation errors."
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "schema": {
+                    "type": "object",
+                    "additionalProperties": true
+                },
+                "schema_b64": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "ValidateRequestMeta": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "error_response_code": {
+                    "type": "integer",
+                    "description": "Allows override of default 422 Unprocessible Entity response code for validation errors."
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "VersionData": {
+            "type": "object",
+            "properties": {
+                "default_version": {
+                    "type": "string"
+                },
+                "not_versioned": {
+                    "type": "boolean"
+                },
+                "versions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/VersionInfo"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "VersionDefinition": {
+            "type": "object",
+            "properties": {
+                "default": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "fallback_to_default": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "strip_path": {
+                    "type": "boolean"
+                },
+                "strip_versioning_data": {
+                    "type": "boolean"
+                },
+                "versions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "VersionInfo": {
+            "type": "object",
+            "properties": {
+                "expires": {
+                    "type": "string"
+                },
+                "extended_paths": {
+                    "$ref": "#/definitions/ExtendedPathsSet"
+                },
+                "global_headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "global_headers_disabled": {
+                    "type": "boolean"
+                },
+                "global_headers_remove": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "global_response_headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "global_response_headers_disabled": {
+                    "type": "boolean"
+                },
+                "global_response_headers_remove": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "global_size_limit": {
+                    "type": "integer"
+                },
+                "ignore_endpoint_case": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "override_target": {
+                    "type": "string"
+                },
+                "paths": {
+                    "$ref": "#/definitions/struct{}"
+                },
+                "use_extended_paths": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "VirtualMeta": {
+            "type": "object",
+            "properties": {
+                "disabled": {
+                    "type": "boolean"
+                },
+                "function_source_type": {
+                    "$ref": "#/definitions/SourceMode"
+                },
+                "function_source_uri": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "proxy_on_error": {
+                    "type": "boolean"
+                },
+                "response_function_name": {
+                    "type": "string"
+                },
+                "use_session": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
