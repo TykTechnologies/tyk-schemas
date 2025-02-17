@@ -1,0 +1,72 @@
+name: Generate JSON Schema
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      branches:
+        description: 'Comma-separated list of long-term support branches (e.g. 5.8,5.6)'
+        required: true
+        default: '5.8,5.6'
+
+jobs:
+  generate-schema:
+    runs-on: ubuntu-latest
+    env:
+      BRANCHES: "5.7,5.6"
+    steps:
+      - name: Checkout target repository (tyk-schema)
+        uses: actions/checkout@v4
+
+      # Step 2: Checkout the source repository (tyk) into a subfolder.
+      - name: Checkout source repository (tyk)
+        uses: actions/checkout@v4
+        with:
+          repository: TykTechnologies/tyk
+          token: ${{ secrets.ORG_GH_TOKEN }}
+          path: tyk-source
+
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.20'
+
+      # Step 4: Build the schema generator tool from the source repository.
+      - name: Install Schema Generator
+        run: |
+          go install github.com/TykTechnologies/exp/cmd/schema-gen@main
+
+      - name: Install module dependencies
+        run: |
+          cd tyk-source
+          go mod tidy
+
+      # Step 5: Generate the JSON Schema for each specified branch.
+      - name: Generate Schema for Each Branch
+        run: |
+          export PATH=$HOME/go/bin:$PATH
+          # Split the input into an array of branch names.
+          IFS=',' read -r -a branches <<< "$BRANCHES"
+          for branch in "${branches[@]}"; do
+            echo "Processing branch $branch"
+            cd tyk-source
+            git fetch --all
+            # Prepend "release-" to get the correct branch name (e.g. "5.7" becomes "release-5.7")
+            git checkout release-$branch
+            # Run the schema generator (adjust -i, -t, and -o as needed)
+            ls -a
+            schema-gen -i=./apidef -t=apidef.APIDefinition -o=schema_apidef_full.json
+            cd ..
+            # Create a directory in the target repo (e.g. v5.8) and copy the generated schema
+            mkdir -p v$branch
+            cp tyk-source/schema.json v$branch/schema.json
+          done
+
+      - name: Create Pull Request for Generated Schema
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
+          branch: auto/schema-update
+          title: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
+          body: "This pull request updates the JSON Schema file (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}."
