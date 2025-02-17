@@ -41,7 +41,10 @@ jobs:
         run: |
           cd ./tyk-source
           go mod tidy
-
+      - name: Debug
+        run: |
+          ls -a
+          pwd
       # Step 5: Generate the JSON Schema for each specified branch.
       - name: Generate Schema for Each Branch
         run: |
@@ -78,6 +81,7 @@ jobs:
           token: ${{ secrets.ORG_GH_TOKEN }}
           commit-message: "Update JSON Schema for branches: ${{ env.BRANCHES }}"
           branch: auto/schema-update
+          delete-branch: true
           base: main
           title: "Update JSON Schema  for branches: ${{ env.BRANCHES }}"
           body: "This pull request updates the JSON Schema file for branches: ${{ env.BRANCHES }}."
