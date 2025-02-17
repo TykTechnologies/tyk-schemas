@@ -25,6 +25,7 @@ jobs:
           repository: TykTechnologies/tyk
           token: ${{ secrets.ORG_GH_TOKEN }}
           path: tyk-source
+          submodules: false
 
       - name: Setup Go
         uses: actions/setup-go@V5
