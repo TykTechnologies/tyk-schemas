@@ -68,5 +68,6 @@ jobs:
           token: ${{ secrets.ORG_GH_TOKEN }}
           commit-message: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
           branch: auto/schema-update
+          base: main
           title: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
           body: "This pull request updates the JSON Schema file (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}."
