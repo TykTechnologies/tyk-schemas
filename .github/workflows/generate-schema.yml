@@ -24,7 +24,7 @@ jobs:
         with:
           repository: TykTechnologies/tyk
           token: ${{ secrets.ORG_GH_TOKEN }}
-          path: tyk-source
+          path: ../tyk-source
           submodules: false
 
       - name: Setup Go
@@ -50,7 +50,7 @@ jobs:
           IFS=',' read -r -a branches <<< "$BRANCHES"
           for branch in "${branches[@]}"; do
             echo "Processing branch $branch"
-            cd tyk-source
+            cd ../tyk-source
             git fetch --all
             if [ "$branch" = "master" ]; then
               git checkout master
@@ -68,16 +68,16 @@ jobs:
             fi
             # Create a directory in the target repo (e.g. v5.8) and copy the generated schema
             mkdir -p "$folder"
-            cp tyk-source/schema_apidef_full.json "$folder/schema_apidef_full.json"
-            cp tyk-source/schema_oss_config_full.json "$folder/schema_oss_config_full.json"
+            cp ../tyk-source/schema_apidef_full.json "$folder/schema_apidef_full.json"
+            cp ../tyk-source/schema_oss_config_full.json "$folder/schema_oss_config_full.json"
           done
 
       - name: Create Pull Request for Generated Schema
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.ORG_GH_TOKEN }}
-          commit-message: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
+          commit-message: "Update JSON Schema for branches: ${{ env.BRANCHES }}"
           branch: auto/schema-update
           base: main
-          title: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
-          body: "This pull request updates the JSON Schema file (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}."
+          title: "Update JSON Schema  for branches: ${{ env.BRANCHES }}"
+          body: "This pull request updates the JSON Schema file for branches: ${{ env.BRANCHES }}."
