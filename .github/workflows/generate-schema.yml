@@ -63,9 +63,9 @@ jobs:
           done
 
       - name: Create Pull Request for Generated Schema
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ORG_GH_TOKEN }}
           commit-message: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
           branch: auto/schema-update
           title: "Update JSON Schema (schema_apidef_full.json) for branches: ${{ env.BRANCHES }}"
