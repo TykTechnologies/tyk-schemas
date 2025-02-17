@@ -24,7 +24,7 @@ jobs:
         with:
           repository: TykTechnologies/tyk
           token: ${{ secrets.ORG_GH_TOKEN }}
-          path: ../tyk-source
+          path: ./tyk-source
           submodules: false
 
       - name: Setup Go
@@ -39,7 +39,7 @@ jobs:
 
       - name: Install module dependencies
         run: |
-          cd tyk-source
+          cd ./tyk-source
           go mod tidy
 
       # Step 5: Generate the JSON Schema for each specified branch.
@@ -50,7 +50,7 @@ jobs:
           IFS=',' read -r -a branches <<< "$BRANCHES"
           for branch in "${branches[@]}"; do
             echo "Processing branch $branch"
-            cd ../tyk-source
+            cd ./tyk-source
             git fetch --all
             if [ "$branch" = "master" ]; then
               git checkout master
@@ -68,8 +68,8 @@ jobs:
             fi
             # Create a directory in the target repo (e.g. v5.8) and copy the generated schema
             mkdir -p "$folder"
-            cp ../tyk-source/schema_apidef_full.json "$folder/schema_apidef_full.json"
-            cp ../tyk-source/schema_oss_config_full.json "$folder/schema_oss_config_full.json"
+            cp ./tyk-source/schema_apidef_full.json "$folder/schema_apidef_full.json"
+            cp ./tyk-source/schema_oss_config_full.json "$folder/schema_oss_config_full.json"
           done
 
       - name: Create Pull Request for Generated Schema
