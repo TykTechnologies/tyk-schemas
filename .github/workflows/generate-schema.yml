@@ -1,0 +1,87 @@
+name: Generate JSON Schema
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      branches:
+        description: 'Comma-separated list of long-term support branches (e.g. 5.8,5.6)'
+        required: true
+        default: 'master,5.3,5.4,5.7'
+
+jobs:
+  generate-schema:
+    runs-on: ubuntu-latest
+    env:
+      BRANCHES: ${{ github.event.inputs.branches || 'master,5.3,5.4,5.7' }}
+    steps:
+      - name: Checkout target repository (tyk-schema)
+        uses: actions/checkout@v4
+
+      # Step 2: Checkout the source repository (tyk) into a subfolder.
+      - name: Checkout source repository (tyk)
+        uses: actions/checkout@v4
+        with:
+          repository: TykTechnologies/tyk
+          token: ${{ secrets.ORG_GH_TOKEN }}
+          path: ./tyk-source
+          submodules: false
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.4'
+
+      # Step 4: Build the schema generator tool from the source repository.
+      - name: Install Schema Generator
+        run: |
+          go install github.com/TykTechnologies/exp/cmd/schema-gen@main
+
+      - name: Install module dependencies
+        run: |
+          cd ./tyk-source
+          go mod tidy
+      - name: Debug
+        run: |
+          ls -a
+          pwd
+      # Step 5: Generate the JSON Schema for each specified branch.
+      - name: Generate Schema for Each Branch
+        run: |
+          export PATH=$HOME/go/bin:$PATH
+          # Split the input into an array of branch names.
+          IFS=',' read -r -a branches <<< "$BRANCHES"
+          for branch in "${branches[@]}"; do
+            echo "Processing branch $branch"
+            cd ./tyk-source
+            git fetch --all
+            if [ "$branch" = "master" ]; then
+              git checkout master
+            else
+              git checkout release-$branch
+            fi
+            # Run the schema generator (adjust -i, -t, and -o as needed)
+            schema-gen jsonschema -i=./apidef -t=APIDefinition -o=schema_apidef_full.json
+            schema-gen jsonschema -i=./config -t=Config -o=schema_oss_config_full.json
+            cd ..
+            if [ "$branch" = "master" ]; then
+              folder="master"
+            else
+              folder="v$branch"
+            fi
+            # Create a directory in the target repo (e.g. v5.8) and copy the generated schema
+            mkdir -p "$folder"
+            cp ./tyk-source/schema_apidef_full.json "$folder/schema_apidef_full.json"
+            cp ./tyk-source/schema_oss_config_full.json "$folder/schema_oss_config_full.json"
+          done
+
+      - name: Create Pull Request for Generated Schema
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.ORG_GH_TOKEN }}
+          commit-message: "Update JSON Schema for branches: ${{ env.BRANCHES }}"
+          branch: auto/schema-update
+          delete-branch: true
+          base: main
+          title: "Update JSON Schema  for branches: ${{ env.BRANCHES }}"
+          body: "This pull request updates the JSON Schema file for branches: ${{ env.BRANCHES }}."
